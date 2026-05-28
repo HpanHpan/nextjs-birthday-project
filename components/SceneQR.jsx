@@ -1,13 +1,9 @@
 'use client';
 import { useState, useRef, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { QRCodeSVG } from 'qrcode.react';
-
-const SITE_URL = 'https://nextjs-birthday-project.vercel.app/';
 
 export default function SceneQR({ onNext }) {
   const [isMuted, setIsMuted] = useState(true);
-  const [copied, setCopied] = useState(false);
   const videoRef = useRef(null);
 
   useEffect(() => {
@@ -15,13 +11,6 @@ export default function SceneQR({ onNext }) {
       videoRef.current.muted = isMuted;
     }
   }, [isMuted]);
-
-  const handleCopy = () => {
-    navigator.clipboard.writeText(SITE_URL).then(() => {
-      setCopied(true);
-      setTimeout(() => setCopied(false), 2000);
-    });
-  };
 
   return (
     <motion.div
@@ -84,120 +73,6 @@ export default function SceneQR({ onNext }) {
             </svg>
           )}
         </button>
-      </motion.div>
-
-      {/* QR Code Card */}
-      <motion.div
-        initial={{ opacity: 0, y: 30, scale: 0.9 }}
-        animate={{ opacity: 1, y: 0, scale: 1 }}
-        transition={{ delay: 0.7, type: 'spring', stiffness: 80 }}
-        style={{
-          background: 'rgba(255,255,255,0.75)',
-          backdropFilter: 'blur(20px)',
-          WebkitBackdropFilter: 'blur(20px)',
-          border: '2px solid rgba(255,255,255,0.9)',
-          borderRadius: 28,
-          padding: '28px 32px 24px',
-          maxWidth: 340,
-          width: '100%',
-          textAlign: 'center',
-          boxShadow: '0 8px 40px rgba(200,100,180,0.18), inset 0 1px 0 rgba(255,255,255,0.9)',
-        }}
-      >
-        {/* Scan label */}
-        <p
-          style={{
-            fontSize: 11,
-            letterSpacing: '0.15em',
-            textTransform: 'uppercase',
-            color: '#c4a0b0',
-            marginBottom: 16,
-            fontWeight: 600,
-          }}
-        >
-          📱 Scan to open on your phone
-        </p>
-
-        {/* Pulsing glow ring + QR */}
-        <div style={{ position: 'relative', display: 'inline-block' }}>
-          {/* Animated glow ring */}
-          <motion.div
-            animate={{ scale: [1, 1.08, 1], opacity: [0.4, 0.85, 0.4] }}
-            transition={{ duration: 2.4, repeat: Infinity, ease: 'easeInOut' }}
-            style={{
-              position: 'absolute',
-              inset: -12,
-              borderRadius: 22,
-              background: 'linear-gradient(135deg, #FF6B9D55, #c77dff55, #6BC5FF55)',
-              zIndex: 0,
-            }}
-          />
-
-          {/* QR Code */}
-          <div
-            style={{
-              position: 'relative',
-              zIndex: 1,
-              background: 'white',
-              borderRadius: 16,
-              padding: 14,
-              display: 'inline-block',
-              boxShadow: '0 4px 20px rgba(180,100,140,0.12)',
-            }}
-          >
-            <QRCodeSVG
-              value={SITE_URL}
-              size={180}
-              bgColor="#ffffff"
-              fgColor="#3d1a4a"
-              level="H"
-              includeMargin={false}
-            />
-          </div>
-        </div>
-
-        {/* URL + copy button */}
-        <div
-          style={{
-            marginTop: 18,
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            gap: 8,
-            flexWrap: 'wrap',
-          }}
-        >
-          <span
-            style={{
-              fontSize: 11,
-              color: '#9b6a8a',
-              fontFamily: 'monospace',
-              letterSpacing: '0.02em',
-              wordBreak: 'break-all',
-            }}
-          >
-            {SITE_URL}
-          </span>
-          <button
-            type="button"
-            onClick={handleCopy}
-            title="Copy link"
-            style={{
-              flexShrink: 0,
-              background: copied ? '#e0799a' : 'rgba(224,121,154,0.12)',
-              border: 'none',
-              borderRadius: 8,
-              padding: '4px 10px',
-              fontSize: 11,
-              color: copied ? '#fff' : '#e0799a',
-              cursor: 'pointer',
-              fontWeight: 700,
-              transition: 'all 0.2s',
-            }}
-          >
-            {copied ? '✓ Copied!' : 'Copy'}
-          </button>
-        </div>
       </motion.div>
 
       {/* Skip hint */}
