@@ -45,7 +45,7 @@ export default function SceneCake({ onNext }) {
       style={{ background: 'linear-gradient(160deg,#fdf4ef,#fce8f0,#f0ecfc)' }}
       initial={{ opacity: 0, y: 60 }} animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -60 }}
-      transition={{ type: 'spring', stiffness: 80 }}
+      transition={{ duration: 0.8, ease: 'easeInOut' }}
     >
       <motion.p
         className="text-xs uppercase tracking-widest mb-2"

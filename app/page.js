@@ -1,5 +1,5 @@
 'use client';
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { AnimatePresence } from 'framer-motion';
 import SceneQR from '@/components/SceneQR';
 import SceneCake from '@/components/SceneCake';
@@ -11,6 +11,26 @@ import SceneFinal from '@/components/SceneFinal';
 export default function Home() {
   const [scene, setScene] = useState(0);
   const next = () => setScene((s) => s + 1);
+  const audioRef = useRef(null);
+
+  useEffect(() => {
+    if (scene === 1 && !audioRef.current) {
+      const audio = new Audio('/audio.mp3');
+      audio.loop = true;
+      audio.volume = 0.8;
+      audioRef.current = audio;
+      audio.play().catch(() => {});
+    }
+  }, [scene]);
+
+  useEffect(() => {
+    return () => {
+      if (audioRef.current) {
+        audioRef.current.pause();
+        audioRef.current.src = '';
+      }
+    };
+  }, []);
 
   return (
     <div className="min-h-screen relative">

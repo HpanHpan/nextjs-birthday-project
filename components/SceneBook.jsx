@@ -36,7 +36,7 @@ export default function SceneBook({ onNext }) {
       style={{ background: 'linear-gradient(160deg,#fef9f3,#fdeef5,#f5eefe)' }}
       initial={{ opacity: 0, x: 80 }} animate={{ opacity: 1, x: 0 }}
       exit={{ opacity: 0, x: -80 }}
-      transition={{ type: 'spring', stiffness: 80 }}
+      transition={{ duration: 0.8, ease: 'easeInOut' }}
     >
       <motion.p className="text-xs uppercase tracking-widest mb-2"
         style={{ color: '#c4a0b0' }}

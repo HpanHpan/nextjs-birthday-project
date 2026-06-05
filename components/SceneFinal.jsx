@@ -14,34 +14,13 @@ function useConfetti() {
   }, []);
 }
 
-function useBackgroundAudio() {
-  const audioRef = useRef(null);
-  useEffect(() => {
-    // Create the Audio object once and play immediately.
-    // The browser will allow this because the user already interacted
-    // with the page (tapped the video / skip button) before reaching this scene.
-    const audio = new Audio('/audio.mp3');
-    audio.loop = false;
-    audio.volume = 1;
-    audioRef.current = audio;
-    audio.play().catch(() => {
-      // Autoplay blocked in some environments — silently ignore.
-    });
-    return () => {
-      audio.pause();
-      audio.src = '';
-    };
-  }, []);
-}
-
 export default function SceneFinal() {
   useConfetti();
-  useBackgroundAudio();
   return (
     <motion.div
       className="min-h-screen flex flex-col items-center px-4 py-20"
       style={{ background: 'linear-gradient(160deg,#fdf8f3,#fceef6,#f3effe)' }}
-      initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.8 }}
+      initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.8, ease: 'easeInOut' }}
     >
       <motion.div className="flex gap-6 text-3xl mb-8"
         animate={{ y: [0, -10, 0] }}

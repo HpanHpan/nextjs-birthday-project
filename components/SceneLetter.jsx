@@ -48,6 +48,7 @@ export default function SceneLetter({ onNext }) {
       className="min-h-screen flex flex-col items-center justify-center px-4 py-16"
       style={{ background: 'linear-gradient(160deg,#fdf8f3,#fceef6,#f3effe)' }}
       initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
+      transition={{ duration: 0.8, ease: 'easeInOut' }}
     >
       <motion.p className="text-xs uppercase tracking-widest mb-2"
         style={{ color: '#c4a0b0' }}
