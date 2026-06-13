@@ -2,8 +2,7 @@
 import { useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
-
-const PHOTOS = ['/image1.jpg', '/image2.jpg', '/image3.jpg', '/image4.jpg'];
+import { PHOTOS, CLOSING_MESSAGE } from '@/config';
 
 function useConfetti() {
   useEffect(() => {
@@ -156,7 +155,7 @@ export default function SceneFinal() {
 
       <motion.div className="text-center" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.8 }}>
         <p className="font-playfair italic text-2xl mb-2" style={{ color: '#e07a9a' }}>
-          I love you to the moon and back 🌙
+          {CLOSING_MESSAGE}
         </p>
         <p className="text-sm" style={{ color: '#c4a0b0', letterSpacing: '0.15em' }}>
           — Made with all my love ✦ {new Date().getFullYear()}

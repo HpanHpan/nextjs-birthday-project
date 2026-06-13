@@ -1,26 +1,7 @@
 'use client';
 import { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-
-// ✏️ CUSTOMIZE YOUR LETTER HERE
-const LINES = [
-  "My dearest,",
-  "",
-  "Today is all about you —",
-  "your smile, your laugh,",
-  "the way you light up every room.",
-  "",
-  "I wanted to give you something",
-  "that felt as special as you are.",
-  "",
-  "Every moment with you",
-  "is one I treasure forever.",
-  "",
-  "Happy Birthday, my love.",
-  "Here's to you — always. 🌸",
-  "",
-  "— With all my love 💕",
-];
+import { LETTER_LINES as LINES } from '@/config';
 
 export default function SceneLetter({ onNext }) {
   const [visible, setVisible] = useState(0);
