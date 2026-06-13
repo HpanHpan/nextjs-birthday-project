@@ -2,11 +2,7 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
-
-const SPREADS = [
-  { left: '/image1.jpg', right: '/image2.jpg', caption: 'Our favourite moments 🌸' },
-  { left: '/image3.jpg', right: '/image4.jpg', caption: 'Every day is an adventure 🌼' },
-];
+import { BOOK_SPREADS as SPREADS } from '@/config';
 
 export default function SceneBook({ onNext }) {
   const [page, setPage] = useState(0);
